@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Elderly Health Monitoring Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🏥 Elderly Health Monitoring Dashboard</h1>
+        
+        <div class="patient-selector">
+            <label>Select Patient:</label>
+            <select id="patientSelect" onchange="loadPatientData()">
+                <option value="">-- Choose a patient --</option>
+            </select>
+        </div>
+        
+        <div id="dashboard" style="display:none;">
+            <div class="patient-info">
+                <h2 id="patientName"></h2>
+                <p id="patientAge"></p>
+            </div>
+            
+            <div class="alerts-box">
+                <h3>Alerts</h3>
+                <p id="alertsText"></p>
+            </div>
+            
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="icon">❤️</div>
+                    <h4>Avg Heart Rate</h4>
+                    <p class="value" id="avgHeartRate">-</p>
+                </div>
+                <div class="insight-card">
+                    <div class="icon">💨</div>
+                    <h4>Avg Oxygen Level</h4>
+                    <p class="value" id="avgOxygen">-</p>
+                </div>
+                <div class="insight-card">
+                    <div class="icon">🌡️</div>
+                    <h4>Avg Temperature</h4>
+                    <p class="value" id="avgTemperature">-</p>
+                </div>
+                <div class="insight-card">
+                    <div class="icon">😴</div>
+                    <h4>Avg Sleep Hours</h4>
+                    <p class="value" id="avgSleepHours">-</p>
+                </div>
+            </div>
+            
+            <h3>Recent Readings</h3>
+            <table id="readingsTable">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Heart Rate</th>
+                        <th>Blood Pressure</th>
+                        <th>Temperature</th>
+                        <th>Oxygen</th>
+                        <th>Activity</th>
+                    </tr>
+                </thead>
+                <tbody id="readingsBody"></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>
