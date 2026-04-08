@@ -1,0 +1,6 @@
+0:0:0:0:0:0:0:1 - - [08/Apr/2026:10:56:23 +0000] "GET / HTTP/1.1" 200 2428 http-bio-8080-exec-1 26
+0:0:0:0:0:0:0:1 - - [08/Apr/2026:10:56:23 +0000] "GET /css/style.css HTTP/1.1" 304 - http-bio-8080-exec-3 7
+0:0:0:0:0:0:0:1 - - [08/Apr/2026:10:56:23 +0000] "GET /js/app.js HTTP/1.1" 304 - http-bio-8080-exec-4 4
+0:0:0:0:0:0:0:1 - - [08/Apr/2026:10:56:23 +0000] "GET /dashboard HTTP/1.1" 200 894 http-bio-8080-exec-7 50
+0:0:0:0:0:0:0:1 - - [08/Apr/2026:10:56:27 +0000] "GET /dashboard?patientId=P001 HTTP/1.1" 200 645 http-bio-8080-exec-9 8
+0:0:0:0:0:0:0:1 - - [08/Apr/2026:11:14:10 +0000] "GET /dashboard HTTP/1.1" 200 894 http-bio-8080-exec-1 2

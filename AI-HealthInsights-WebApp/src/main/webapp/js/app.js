@@ -1,15 +1,22 @@
 let allPatients = [];
 
-fetch('/elderly-health-monitor/api/dashboard')
-    .then(res => res.json())
+fetch('/dashboard')
+    .then(res => {
+        if (!res.ok) {
+            throw new Error('Failed to load patients');
+        }
+        return res.json();
+    })
     .then(data => {
-        allPatients = data.patients;
+        allPatients = data.patients || [];
         populatePatientSelect();
     })
     .catch(err => console.error('Error loading patients:', err));
 
 function populatePatientSelect() {
     const select = document.getElementById('patientSelect');
+    select.innerHTML = '<option value="">-- Choose a patient --</option>';
+
     allPatients.forEach(p => {
         const option = document.createElement('option');
         option.value = p.id;
@@ -20,17 +27,27 @@ function populatePatientSelect() {
 
 function loadPatientData() {
     const patientId = document.getElementById('patientSelect').value;
+
     if (!patientId) {
         document.getElementById('dashboard').style.display = 'none';
         return;
     }
-    
-    fetch(`/elderly-health-monitor/api/dashboard?patientId=${patientId}`)
-        .then(res => res.json())
+
+    fetch(`/dashboard?patientId=${patientId}`)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error('Failed to load patient data');
+            }
+            return res.json();
+        })
         .then(data => {
             const patient = data.patient;
             const insights = data.insights;
-            
+
+            if (!patient || !insights) {
+                throw new Error('Invalid response from server');
+            }
+
             document.getElementById('patientName').textContent = patient.name;
             document.getElementById('patientAge').textContent = `Age: ${patient.age}`;
             document.getElementById('alertsText').textContent = insights.alerts;
@@ -38,9 +55,10 @@ function loadPatientData() {
             document.getElementById('avgOxygen').textContent = insights.avgOxygen + ' %';
             document.getElementById('avgTemperature').textContent = insights.avgTemperature + ' °C';
             document.getElementById('avgSleepHours').textContent = insights.avgSleepHours + ' hrs';
-            
+
             const tbody = document.getElementById('readingsBody');
             tbody.innerHTML = '';
+
             patient.readings.forEach(r => {
                 const row = tbody.insertRow();
                 row.innerHTML = `
@@ -52,8 +70,11 @@ function loadPatientData() {
                     <td>${r.activityLevel}</td>
                 `;
             });
-            
+
             document.getElementById('dashboard').style.display = 'block';
         })
-        .catch(err => console.error('Error loading patient data:', err));
+        .catch(err => {
+            console.error('Error loading patient data:', err);
+            alert('Could not load patient data. Please check the backend.');
+        });
 }

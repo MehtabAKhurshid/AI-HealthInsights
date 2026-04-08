@@ -58,6 +58,31 @@
           "sleepHours": 8.0
         }
       ]
+    },
+     {
+      "id": "P003",
+      "name": "Ali Mohamed",
+      "age": 68,
+      "readings": [
+        {
+          "timestamp": "2026-03-15T08:00:00",
+          "heartRate": 92,
+          "bloodPressure": "118/76",
+          "temperature": 36.4,
+          "oxygenLevel": 99,
+          "activityLevel": "high",
+          "sleepHours": 8.0
+        },
+        {
+          "timestamp": "2024-01-15T12:00:00",
+          "heartRate": 75,
+          "bloodPressure": "120/78",
+          "temperature": 36.5,
+          "oxygenLevel": 98,
+          "activityLevel": "moderate",
+          "sleepHours": 8.0
+        }
+      ]
     }
   ]
 }
